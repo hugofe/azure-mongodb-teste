@@ -1,0 +1,28 @@
+{
+    "apiVersion":"v1",
+    "kind": "Pod",
+    "metadata": {
+        "name": "api-heroes-postgres",
+        "labels": {
+            "app": "api-heroes-postgres",
+            "version": "v1"
+        }
+    },
+    "spec": {
+        "containers": [
+            {
+                "name": "api-heroes-postgres",
+                "image": "marcelogribeiro/api-heroes-postgres",
+                "ports": [{
+                    "containerPort": 3000
+                }],
+                "env": [
+                    {
+                        "name": "POSTGRES_HOST",
+                        "value": "postgres:mysecretpassword@postgres-svc:5432"
+                    }
+                ]
+            }
+        ]
+    }
+}

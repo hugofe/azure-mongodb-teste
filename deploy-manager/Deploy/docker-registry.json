@@ -1,0 +1,16 @@
+{
+    "apiVersion": "v1",
+    "data": {
+        ".dockerconfigjson": "eyJhdXRocyI6eyIlVVJMJSI6eyJ1c2VybmFtZSI6IiVET0NLRVJfVVNFUk5BTUUlIiwicGFzc3dvcmQiOiIlRE9DS0VSX1BBU1NXT1JEJSIsImVtYWlsIjoiamguZmVycmVpcmF0aUBnbWFpbC5jb20iLCJhdXRoIjoiSlVSUFEwdEZVbDlWVTBWU1RrRk5SU1U2SlVSUFEwdEZVbDlRUVZOVFYwOVNSQ1U9In19fQ=="
+    },
+    "kind": "Secret",
+    "metadata": {
+        "creationTimestamp": "2019-01-24T12:20:43Z",
+        "name": "ecr-api-mongodb",
+        "namespace": "default",
+        "resourceVersion": "46222",
+        "selfLink": "/api/v1/namespaces/default/secrets/ecr-api-mongodb",
+        "uid": "788b2151-1fd2-11e9-b51d-080027cb31e8"
+    },
+    "type": "kubernetes.io/dockerconfigjson"
+}

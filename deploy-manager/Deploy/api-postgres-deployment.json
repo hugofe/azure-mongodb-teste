@@ -1,0 +1,72 @@
+{
+    "apiVersion": "extensions/v1beta1",
+    "kind": "Deployment",
+    "metadata": {
+        "name": "api-heroes-postgres-deploy",
+        "labels": {
+            "app": "api-heroes-postgres",
+            "version": "v1"
+        }
+    },
+    "spec": {
+        "replicas": 3,
+        "strategy":{
+            "type":"RollingUpdate",
+            "rollingUpdate":{
+                "maxSurge": 20,
+                "maxUnavailable": 0
+            }
+        },
+        "selector": {
+            "matchLabels": {
+                "app": "api-heroes-postgres",
+                "version":"v1"
+            }
+        },
+        "template": {
+            "metadata" : {
+                "labels": {
+                    "app": "api-heroes-postgres",
+                    "version": "v1"
+                }
+            },
+            "spec": {
+                 "imagePullSecrets":[{
+                     "name":"ecr-api-postgres"
+                 }],
+                "containers": [
+                    {
+                        "name": "api-heroes-postgres",
+                        "image": "785970312625.dkr.ecr.us-east-1.amazonaws.com/api-heroes-postgres",
+                        "livenessProbe":{
+                            "httpGet":{
+                                "path":"/heroes",
+                                "port": 4000
+                            },
+                        "resources": {
+                            "limits": {
+                                "cpu": "200m",
+                                "memory": "200Mi"            
+                            }
+                        },
+
+                            "initialDelaySeconds": 10,
+                            "timeoutSeconds":2
+                        },
+                        
+                        "ports": [{
+                            "containerPort": 4000
+                        }],
+                        "env": [{
+                            "name": "PORT",
+                            "value": "4000"
+                        }, {
+                            "name": "postgres-URL",
+                            "value": "postgres-svc"
+                        }]
+                    }
+                ]
+            }
+        }
+    }
+}
